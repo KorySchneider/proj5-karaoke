@@ -12,7 +12,7 @@ and feel your troubles melt away.
 
 ## Usage
 
-`$ make service` will start a Green Unicorn (gunicorn) server.
+`$ make service` will start a Green Unicorn ([gunicorn](http://gunicorn.org/)) server.
 
 `$ make run` will launch the server in debugging mode.
 
