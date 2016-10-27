@@ -21,29 +21,15 @@ port="5000"   # But see how this is altered for shared server ix
 # Generate configuration file text with a couple of choices
 #
 function gen_config {
-    secret="$(date | shasum | head -c32)"
-    gendate="$(date)"
     cat <<EOF
-"""
-Configuration of vocabulary game server.
-Generated $( date )
-Edit to fit development or deployment environment.
-
-"""
-
 PORT=${port}
-DEBUG = True  # Set to False for production use
-secret_key="${secret}"
-success_at_count = 3  # How many matches before we declare victory? 
-vocab="data/vocab.txt"  # CHANGE THIS to use another vocabulary file
-
+DEBUG = True
+poi="data/poi.py"
 EOF
 }
 
 # Generate Makefile.local with the proper reference 
 # to pyvenv, which may vary from target to target
-#
-# 
 function gen_makefile {
     if test -f `which pyvenv` ; then
        pyvenv=`which pyvenv`
@@ -88,7 +74,3 @@ else
    gen_config > ../CONFIG.py
    gen_makefile > ../Makefile.local
 fi;
-
-
-
-
