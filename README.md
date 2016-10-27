@@ -20,7 +20,7 @@ and feel your troubles melt away.
 
 ## Contribute
 
-The list of hip karaoke establishments is found in POIs.conf. This is an open source project, so feel free to contribute to the list at https://github.com/koryschneider/proj5-karaoke/pulls.
+The list of hip karaoke establishments is found in `poi.py`. This is an open source project, so feel free to contribute to the list at https://github.com/koryschneider/proj5-karaoke/pulls.
 
 ## About
 
