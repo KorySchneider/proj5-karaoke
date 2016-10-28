@@ -4,3 +4,4 @@ __pycache__/
 env/
 target/
 CONFIG.py
+map_key.txt

@@ -20,6 +20,12 @@ def _poi():
     locations = get_poi()
     return jsonify(locations)
 
+@app.route('/_map_key')
+def _map_key():
+    with open('map_key.txt') as key:
+        map_key = key.read()
+    return jsonify(key=map_key)
+
 # Helper functions
 def get_poi():
     with open('poi.json') as poi:
