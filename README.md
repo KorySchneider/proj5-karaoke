@@ -6,7 +6,7 @@ This is an essential tool for any karaoke enthusiast. Sometimes you may find you
     $ cd /path/to/enlightenment
     $ git clone https://github.com/koryschneider/proj5-karaoke karaoke
     $ cd karaoke
-    $ bash ./configure && make service
+    $ bash configure && make service
 
 and feel your troubles melt away.
 
@@ -16,11 +16,9 @@ and feel your troubles melt away.
 
 `$ make run` will launch the server in debugging mode.
 
-`$ make test` will run the test suite.
-
 ## Contribute
 
-The list of hip karaoke establishments is found in `poi.py`. This is an open source project, so feel free to contribute to the list at https://github.com/koryschneider/proj5-karaoke/pulls.
+The list of hip karaoke establishments is found in `poi.json`. This is an open source project, so feel free to contribute to the list at https://github.com/koryschneider/proj5-karaoke/pulls.
 
 ## About
 
