@@ -49,7 +49,6 @@
 <script>
 $(document).ready(function() {
   $.getJSON('/_map_key', function(data) {
-    console.log(data);
     $.getScript('https://maps.googleapis.com/maps/api/js?key=' + data.key + '&callback=initMap');
   });
 });

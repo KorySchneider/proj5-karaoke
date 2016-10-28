@@ -3,6 +3,7 @@ from flask import jsonify
 
 # Globals
 import CONFIG
+import map_key
 app = flask.Flask(__name__)
 app.secret_key = CONFIG.secret_key
 
@@ -22,9 +23,7 @@ def _poi():
 
 @app.route('/_map_key')
 def _map_key():
-    with open('map_key.txt') as key:
-        map_key = key.read()
-    return jsonify(key=map_key)
+    return jsonify(key=map_key.key)
 
 # Helper functions
 def get_poi():
