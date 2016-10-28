@@ -66,10 +66,10 @@ function initMap() {
   placeMarkers();
 }
 
-function addMarker(pos, title) {
+function addMarker(latlng, title) {
   var marker = new google.maps.Marker({
     map: map,
-    position: pos,
+    position: latlng,
     title: title
   });
   marker.addListener('click', function() {
