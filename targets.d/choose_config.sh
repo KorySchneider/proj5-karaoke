@@ -21,9 +21,11 @@ port="5000"   # But see how this is altered for shared server ix
 # Generate configuration file text with a couple of choices
 #
 function gen_config {
+    secret="$(date | shasum | head -c32)"
     cat <<EOF
-PORT=${port}
-DEBUG = True
+port=${port}
+debug=True
+secret_key="${secret}"
 poi="data/poi.py"
 EOF
 }
