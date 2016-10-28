@@ -1,24 +1,91 @@
 <!doctype html>
 <html> <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>karaoke</title>
-  <meta name='viewport' content='width=device-width, initial-scale=1'>
 
   <!-- jquery -->
   <script
-     src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+    src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
   </script>
+
   <!-- bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <script
-    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
-  </script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+  <!-- google maps -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOQmWeodw_6pKlDixzCB3HZAYaScbOLOQ&callback=initMap"></script>
 </head>
+
 <body>
-
-  <div class='container'>
+  <div class='container row'>
+    <div id='sidebar' class='col-xs-3 col-md-2'>
+      <h2>karaoke</h2>
+      <br>
+      <p>locations marked:</p>
+      <ul>
+      {% for loc in session.locations %}
+        <li>{{ loc.name }}</li>
+      {% endfor %}
+      </ul>
+    </div>
+    <div id='map' class='col-xs-15 col-md-10'></div>
   </div>
-
 </body>
+
+<style>
+.container {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+#map {
+  height: 600px;
+  width: 83%;
+}
+</style>
+
+<script>
+// Globals
+var map;
+var markers = [];
+var mapConfig = {
+  defaultPos: { lat: 44.0521, lng: -123.0868 },
+  defaultZoom: 13
+}
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: mapConfig.defaultZoom,
+    center: mapConfig.defaultPos
+  });
+  placeMarkers();
+}
+
+function addMarker(pos, title) {
+  var marker = new google.maps.Marker({
+    map: map,
+    position: pos,
+    title: title
+  });
+  marker.addListener('click', function() {
+    new google.maps.InfoWindow({ content: title }).open(map, marker);
+  });
+  markers.push(marker);
+}
+
+function placeMarkers() {
+  $.getJSON('/_poi', function(data) {
+    for (var i=0; i < data.length; i++) {
+      var loc = data[i];
+      addMarker(new google.maps.LatLng(loc.lat, loc.lng), loc.name);
+    }
+  });
+}
+</script>
+
 </html>
